@@ -8,9 +8,9 @@
 
 import Foundation
 
-class Socket: NSObject {
+class Client: NSObject {
     
-    static let shared = Socket()
+    static let shared = Client()
     
     var inputStream: NSInputStream!
     var outputStream: NSOutputStream!
@@ -43,7 +43,7 @@ class Socket: NSObject {
     }
 }
 
-extension Socket: NSStreamDelegate {
+extension Client: NSStreamDelegate {
     func stream(aStream: NSStream, handleEvent eventCode: NSStreamEvent) {
         switch eventCode {
         case NSStreamEvent.OpenCompleted:

@@ -22,7 +22,7 @@ class MainViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
 
-        Socket.shared.connect("127.0.0.1", port: 9876)
+        Client.shared.connect("127.0.0.1", port: 9876)
 
     }
 
@@ -33,7 +33,7 @@ class MainViewController: UITableViewController {
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        Socket.shared.sendMessage("哈哈哈哈")
+        Client.shared.sendMessage("哈哈哈哈")
     }
 
     // MARK: - Table view data source
