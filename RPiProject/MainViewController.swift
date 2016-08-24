@@ -9,6 +9,8 @@
 import UIKit
 
 class MainViewController: UITableViewController {
+    
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,11 +20,20 @@ class MainViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+
+        Socket.shared.connect("127.0.0.1", port: 9876)
+
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        Socket.shared.sendMessage("哈哈哈哈")
     }
 
     // MARK: - Table view data source

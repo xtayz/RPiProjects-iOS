@@ -13,6 +13,7 @@
 		897B0A701D6D4A1900B59421 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 897B0A6E1D6D4A1900B59421 /* LaunchScreen.storyboard */; };
 		897B0A7A1D6D51CD00B59421 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897B0A791D6D51CD00B59421 /* MainViewController.swift */; };
 		897B0A7C1D6D5BED00B59421 /* NewHostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897B0A7B1D6D5BED00B59421 /* NewHostViewController.swift */; };
+		897B0A7E1D6DA71600B59421 /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897B0A7D1D6DA71600B59421 /* Socket.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		897B0A711D6D4A1900B59421 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		897B0A791D6D51CD00B59421 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		897B0A7B1D6D5BED00B59421 /* NewHostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewHostViewController.swift; sourceTree = "<group>"; };
+		897B0A7D1D6DA71600B59421 /* Socket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Socket.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		897B0A641D6D4A1900B59421 /* RPiProject */ = {
 			isa = PBXGroup;
 			children = (
+				897B0A7D1D6DA71600B59421 /* Socket.swift */,
 				897B0A651D6D4A1900B59421 /* AppDelegate.swift */,
 				897B0A791D6D51CD00B59421 /* MainViewController.swift */,
 				897B0A7B1D6D5BED00B59421 /* NewHostViewController.swift */,
@@ -146,6 +149,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				897B0A7E1D6DA71600B59421 /* Socket.swift in Sources */,
 				897B0A661D6D4A1900B59421 /* AppDelegate.swift in Sources */,
 				897B0A7A1D6D51CD00B59421 /* MainViewController.swift in Sources */,
 				897B0A7C1D6D5BED00B59421 /* NewHostViewController.swift in Sources */,
