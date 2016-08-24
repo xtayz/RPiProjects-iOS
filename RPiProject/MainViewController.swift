@@ -33,7 +33,7 @@ class MainViewController: UITableViewController {
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        Client.shared.sendMessage("哈哈哈哈")
+        Client.shared.sendMessage("forward")
     }
 
     // MARK: - Table view data source

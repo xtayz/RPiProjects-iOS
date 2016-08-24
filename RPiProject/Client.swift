@@ -34,6 +34,8 @@ class Client: NSObject {
         outputStream.close()
         inputStream.removeFromRunLoop(NSRunLoop.currentRunLoop(), forMode: NSDefaultRunLoopMode)
         outputStream.removeFromRunLoop(NSRunLoop.currentRunLoop(), forMode: NSDefaultRunLoopMode)
+        inputStream = nil
+        outputStream = nil
     }
     
     func sendMessage(msg: String) {
