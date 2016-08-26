@@ -10,97 +10,91 @@ import UIKit
 
 class MainViewController: UITableViewController {
     
-
+    @IBOutlet weak var address: UITextField!
+    @IBOutlet weak var port: UITextField!
+    @IBOutlet weak var name: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
-
-        Client.shared.connect("127.0.0.1", port: 9876)
-
+        updateContent()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+    private func updateContent() {
+        if let address = NSUserDefaults.standardUserDefaults().objectForKey("com.rpiproject.hostaddress") as? String {
+            self.address.text = address
+        }
+        
+        let port = NSUserDefaults.standardUserDefaults().integerForKey("com.rpiproject.hostport")
+        self.port.text = port <= 0 ? "" : "\(port)"
+        
+        if let name = NSUserDefaults.standardUserDefaults().objectForKey("com.rpiproject.hostname") as? String {
+            self.name.text = name
+        }
+    }
+
+    @IBAction func connect(sender: AnyObject) {
+        
+        var errorMessage = ""
+        
+        defer {
+            if !errorMessage.isEmpty {
+                showAlert(errorMessage)
+            }
+        }
+        
+        guard let address = address.text where !address.isEmpty else {
+            errorMessage = "地址能为空"
+            self.address.becomeFirstResponder()
+            return
+        }
+        
+        guard let portStr = port.text, port = Int(portStr) where !portStr.isEmpty else {
+            errorMessage = "端口能为空"
+            self.port.becomeFirstResponder()
+            return
+        }
+        
+        NSUserDefaults.standardUserDefaults().setObject(address, forKey: "com.rpiproject.hostaddress")
+        NSUserDefaults.standardUserDefaults().setInteger(port, forKey: "com.rpiproject.hostport")
+        if let name = name.text where !name.isEmpty {
+            NSUserDefaults.standardUserDefaults().setObject(name, forKey: "com.rpiproject.hostname")
+        }
+        
+        if Client.shared.inputIsReady && Client.shared.outputIsReady {
+            performSegueWithIdentifier("ShowModulesViewController", sender: nil)
+        } else {
+            Client.shared.connect(address, port: UInt32(port))
+            Client.shared.handleConnected = { [unowned self] in
+                self.performSegueWithIdentifier("ShowModulesViewController", sender: nil)
+            }
+        }
+    }
+}
+
+// MARK: - UITableViewDatasource, UITableViewDelegate
+extension MainViewController {
     
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        Client.shared.sendMessage("forward")
-    }
-
     // MARK: - Table view data source
-
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 2
     }
+    
+}
 
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
+// MARK: - UITextFieldDelegate
+extension MainViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
         return true
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

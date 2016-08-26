@@ -12,8 +12,19 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    static var shared: AppDelegate {
+        return UIApplication.sharedApplication().delegate as! AppDelegate
+    }
 
-
+    func popToRootViewController() {
+        if let navi = window?.rootViewController as? UINavigationController {
+            if !navi.visibleViewController!.isKindOfClass(MainViewController) {
+                navi.popToRootViewControllerAnimated(true)
+            }
+        }
+    }
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         return true
@@ -41,6 +52,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
 }
 
+func showAlert(msg: String) {
+    let alertView = UIAlertController(title: nil, message: msg, preferredStyle: .Alert)
+    alertView.addAction(UIAlertAction(title: "确定", style: .Cancel, handler: nil))
+    AppDelegate.shared.window?.rootViewController?.presentViewController(alertView, animated: true, completion: nil)
+}

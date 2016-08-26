@@ -1,5 +1,5 @@
 //
-//  Socket.swift
+//  Client.swift
 //  RPiProject
 //
 //  Created by wonderworld on 16/8/24.
@@ -14,6 +14,26 @@ class Client: NSObject {
     
     var inputStream: NSInputStream!
     var outputStream: NSOutputStream!
+    var inputIsReady: Bool = false {
+        didSet {
+            checkConnection()
+        }
+    }
+    var outputIsReady: Bool = false {
+        didSet {
+            checkConnection()
+        }
+    }
+    
+    var handleConnected: (() -> Void)!
+    
+    func checkConnection() -> Bool {
+        guard inputIsReady && outputIsReady else {
+            return false
+        }
+        handleConnected?()
+        return true
+    }
     
     func connect(host: String, port: UInt32) {
         var readStream: Unmanaged<CFReadStreamRef>?
@@ -30,17 +50,20 @@ class Client: NSObject {
     }
     
     func disconnect() {
-        inputStream.close()
-        outputStream.close()
-        inputStream.removeFromRunLoop(NSRunLoop.currentRunLoop(), forMode: NSDefaultRunLoopMode)
-        outputStream.removeFromRunLoop(NSRunLoop.currentRunLoop(), forMode: NSDefaultRunLoopMode)
+        inputStream?.close()
+        outputStream?.close()
+        inputStream?.removeFromRunLoop(NSRunLoop.currentRunLoop(), forMode: NSDefaultRunLoopMode)
+        outputStream?.removeFromRunLoop(NSRunLoop.currentRunLoop(), forMode: NSDefaultRunLoopMode)
         inputStream = nil
         outputStream = nil
+        inputIsReady = false
+        outputIsReady = false
+        AppDelegate.shared.popToRootViewController()
     }
     
     func sendMessage(msg: String) {
         if let data = msg.dataUsingEncoding(NSUTF8StringEncoding) {
-            outputStream.write(UnsafePointer<UInt8>(data.bytes), maxLength: data.length)
+            outputStream?.write(UnsafePointer<UInt8>(data.bytes), maxLength: data.length)
         }
     }
 }
@@ -52,8 +75,10 @@ extension Client: NSStreamDelegate {
             switch aStream {
             case inputStream:
                 print("InputStream opened!")
+                inputIsReady = true
             case outputStream:
                 print("OutputStream opened!")
+                outputIsReady = true
             default: break
             }
         case NSStreamEvent.HasBytesAvailable:
@@ -79,14 +104,14 @@ extension Client: NSStreamDelegate {
             }
             print("Outputstream is ready!")
         case NSStreamEvent.ErrorOccurred:
-            print("Can not connect to the host!")
             disconnect()
+            showAlert("Can not connect to the host!")
         case NSStreamEvent.EndEncountered:
-            print("Stream closed!")
             disconnect()
+            showAlert("Stream closed!")
         default:
             disconnect()
-            print("Unknown event")
+            showAlert("Unknown event")
         }
     }
 }
