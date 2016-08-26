@@ -16,10 +16,10 @@
 		899A913E1D6FEA1E00115989 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899A91371D6FEA1E00115989 /* Button.swift */; };
 		899A913F1D6FEA1E00115989 /* CarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899A91381D6FEA1E00115989 /* CarViewController.swift */; };
 		899A91401D6FEA1E00115989 /* DHT11ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899A91391D6FEA1E00115989 /* DHT11ViewController.swift */; };
-		899A91411D6FEA1E00115989 /* empty.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 899A913A1D6FEA1E00115989 /* empty.cpp */; };
 		899A91421D6FEA1E00115989 /* LEDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899A913C1D6FEA1E00115989 /* LEDViewController.swift */; };
 		899A91431D6FEA1E00115989 /* ModulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899A913D1D6FEA1E00115989 /* ModulesViewController.swift */; };
 		899A91461D6FEAA500115989 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 899A91441D6FEAA500115989 /* Main.storyboard */; };
+		899A914A1D6FED9200115989 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 899A91491D6FED9200115989 /* libstdc++.6.0.9.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,11 +35,11 @@
 		899A91371D6FEA1E00115989 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		899A91381D6FEA1E00115989 /* CarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarViewController.swift; sourceTree = "<group>"; };
 		899A91391D6FEA1E00115989 /* DHT11ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DHT11ViewController.swift; sourceTree = "<group>"; };
-		899A913A1D6FEA1E00115989 /* empty.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = empty.cpp; sourceTree = "<group>"; };
-		899A913B1D6FEA1E00115989 /* empty.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = empty.hpp; sourceTree = "<group>"; };
 		899A913C1D6FEA1E00115989 /* LEDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LEDViewController.swift; sourceTree = "<group>"; };
 		899A913D1D6FEA1E00115989 /* ModulesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModulesViewController.swift; sourceTree = "<group>"; };
 		899A91451D6FEAA500115989 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		899A91471D6FED8300115989 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		899A91491D6FED9200115989 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
 		B0C75AD06B69A96A4CDAB6EF /* Pods-RPiProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RPiProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RPiProject/Pods-RPiProject.debug.xcconfig"; sourceTree = "<group>"; };
 		E3BF00FB3FF4EF52EECE1A58 /* Pods_RPiProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RPiProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -49,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				899A914A1D6FED9200115989 /* libstdc++.6.0.9.tbd in Frameworks */,
 				1EB061784A38E7C2C95A1D42 /* Pods_RPiProject.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -59,6 +60,8 @@
 		12503ABD4B38EC0F0D3238A6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				899A91491D6FED9200115989 /* libstdc++.6.0.9.tbd */,
+				899A91471D6FED8300115989 /* libstdc++.tbd */,
 				E3BF00FB3FF4EF52EECE1A58 /* Pods_RPiProject.framework */,
 			);
 			name = Frameworks;
@@ -93,8 +96,6 @@
 				899A913C1D6FEA1E00115989 /* LEDViewController.swift */,
 				899A91391D6FEA1E00115989 /* DHT11ViewController.swift */,
 				899A91381D6FEA1E00115989 /* CarViewController.swift */,
-				899A913A1D6FEA1E00115989 /* empty.cpp */,
-				899A913B1D6FEA1E00115989 /* empty.hpp */,
 				899A91361D6FE96B00115989 /* RPiProject-Bridging-Header.h */,
 				899A91441D6FEAA500115989 /* Main.storyboard */,
 				897B0A771D6D518600B59421 /* Resource */,
@@ -244,7 +245,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				899A913E1D6FEA1E00115989 /* Button.swift in Sources */,
-				899A91411D6FEA1E00115989 /* empty.cpp in Sources */,
 				899A91431D6FEA1E00115989 /* ModulesViewController.swift in Sources */,
 				899A913F1D6FEA1E00115989 /* CarViewController.swift in Sources */,
 				897B0A7E1D6DA71600B59421 /* Client.swift in Sources */,
